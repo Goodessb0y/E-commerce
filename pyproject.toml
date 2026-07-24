@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "e-commerce"
+version = "0.1.0"
+description = ""
+authors = ["Sukharev_Alexandr <suxarev.a86@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.13"
+mypy = "^2.3.0"
+isort = "^8.0.1"
+black = "^26.5.1"
+flake8 = "^7.3.0"
+pytest = "^9.1.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
