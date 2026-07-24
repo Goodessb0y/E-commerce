@@ -1,11 +1,10 @@
-
 class Product:
     """Класс представления продукта"""
 
-    name:str
-    description:str
-    price:float
-    quantity:int
+    name: str
+    description: str
+    price: float
+    quantity: int
 
     def __init__(self, name, description, price, quantity):
         self.name = name
@@ -17,14 +16,14 @@ class Product:
 class Category:
     """Класс подсчета категорий"""
 
-    name:str
-    description:str
-    products:list
+    name: str
+    description: str
+    products: list
 
     product_count = 0
     category_count = 0
 
-    def __init__(self, name:str, description:str, products:list[Product]):
+    def __init__(self, name: str, description: str, products: list[Product]):
         self.name = name
         self.description = description
         self.products = products

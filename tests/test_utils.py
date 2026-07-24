@@ -14,15 +14,15 @@ def test_load_categories_from_json(tmp_path):
                     "name": "Samsung S25",
                     "description": "Флагман",
                     "price": 120000,
-                    "quantity": 5
+                    "quantity": 5,
                 },
                 {
                     "name": "iPhone 17",
                     "description": "Apple",
                     "price": 150000,
-                    "quantity": 3
-                }
-            ]
+                    "quantity": 3,
+                },
+            ],
         }
     ]
 
