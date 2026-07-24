@@ -24,8 +24,8 @@ def test_category_count():
     product_7 = Product("Пила", "Зубчатая", 1590, 49)
     p_list_3 = [product_6, product_7]
 
-    Category('Бытовая техника', 'Для кухни', p_list_2)
-    Category('Инструмент', 'Для дома', p_list_3)
+    Category("Бытовая техника", "Для кухни", p_list_2)
+    Category("Инструмент", "Для дома", p_list_3)
     assert Category.category_count == 2
 
 
@@ -39,6 +39,6 @@ def test_product_count():
     product_7 = Product("Пила", "Зубчатая", 1590, 49)
     p_list_3 = [product_6, product_7]
 
-    Category('Бытовая техника', 'Для кухни', p_list_2)
-    Category('Инструмент', 'Для дома', p_list_3)
+    Category("Бытовая техника", "Для кухни", p_list_2)
+    Category("Инструмент", "Для дома", p_list_3)
     assert Category.product_count == 4
