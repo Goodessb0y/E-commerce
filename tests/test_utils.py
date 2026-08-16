@@ -40,10 +40,9 @@ def test_load_categories_from_json(tmp_path):
     assert result[0].name == "Смартфоны"
     assert result[0].description == "Телефоны"
 
-    assert len(result[0].products) == 2
+    products = result[0].products
 
-    assert isinstance(result[0].products[0], Product)
-
-    assert result[0].products[0].name == "Samsung S25"
-    assert result[0].products[0].price == 120000
-    assert result[0].products[0].quantity == 5
+    assert isinstance(products, str)
+    assert "Samsung S25, 120000 руб. Остаток: 5 шт.\n" in products
+    assert "iPhone 17, 150000 руб. Остаток: 3 шт.\n" in products
+    assert len(products.splitlines()) == 2
