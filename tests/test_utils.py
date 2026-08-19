@@ -1,6 +1,6 @@
 import json
 
-from src.Classes import Category, Product
+from src.Classes import Category
 from src.utils import load_categories_from_json
 
 
