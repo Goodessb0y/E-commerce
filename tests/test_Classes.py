@@ -1,4 +1,5 @@
-from src.Classes import Category, Product
+import pytest
+from src.Classes import Category, Product, Iterator
 
 
 def test_product_init(product):
@@ -193,3 +194,61 @@ def test_price_decrease_invalid_answer(monkeypatch):
     product.price = 100
 
     assert product.price == 200
+
+
+def test_iterator_iter():
+    product1 = Product("Телефон", "Описание", 1000, 4)
+    category = Category("Электроника", "Техника", [product1])
+
+    iterator = Iterator(category)
+
+    assert iter(iterator) is iterator
+
+
+def test_iterator():
+    product1 = Product('Телефон', 'Описание', 1000, 4)
+    product2 = Product('Ноутбук','Описание',10000, 5)
+
+    category = Category(
+        'Электроника',
+        'Техника',
+        [product1, product2]
+    )
+
+    iterator = Iterator(category)
+
+    assert next(iterator) == product1
+    assert next(iterator) == product2
+
+    with pytest.raises(StopIteration):
+        next(iterator)
+
+
+def test_iterator_for():
+    product1 = Product("Телефон", "Описание", 1000, 2)
+    product2 = Product("Ноутбук", "Описание", 2000, 3)
+
+    category = Category(
+        "Электроника",
+        "Техника",
+        [product1, product2]
+    )
+
+    iterator = Iterator(category)
+
+    result = list(iterator)
+
+    assert result == [product1, product2]
+
+
+def test_get_products_for_iterator():
+    product1 = Product("Телефон", "Описание", 1000, 4)
+    product2 = Product("Ноутбук", "Описание", 10000, 5)
+
+    category = Category(
+        "Электроника",
+        "Техника",
+        [product1, product2]
+    )
+
+    assert category.get_products_for_Iterator() == [product1, product2]
