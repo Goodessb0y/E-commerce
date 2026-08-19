@@ -1,5 +1,6 @@
 import pytest
-from src.Classes import Category, Product, Iterator
+
+from src.Classes import Category, Iterator, Product
 
 
 def test_product_init(product):
@@ -56,14 +57,14 @@ def test_add_product():
 
 def test_counter_add_product():
     Category.product_count = 0
-    category = Category('название', 'описание',[])
+    category = Category("название", "описание", [])
     new_product = Product("iPhone", "Apple", 100000, 5)
     category.add_product(new_product)
     assert Category.product_count == 1
 
 
 def test_add():
-    category = Category('Название_1','Описание_1', [])
+    category = Category("Название_1", "Описание_1", [])
     product = Product("Фон", "Яблоко", 200000, 3)
     category.add_product(product)
     assert category.products == "Фон, 200000 руб. Остаток: 3 шт.\n"
@@ -72,9 +73,9 @@ def test_add():
 def test_new_product():
     product_data = {
         "name": "Товар",
-        'description': "Хороший",
-        'price': 100,
-        'quantity': 2
+        "description": "Хороший",
+        "price": 100,
+        "quantity": 2,
     }
 
     existing_data = []
@@ -82,52 +83,33 @@ def test_new_product():
     result = Product.new_product(product_data, existing_data)
 
     assert isinstance(result, Product)
-    assert result.name == product_data['name']
-    assert result.description == product_data['description']
-    assert result.price == product_data['price']
-    assert result.quantity == product_data['quantity']
+    assert result.name == product_data["name"]
+    assert result.description == product_data["description"]
+    assert result.price == product_data["price"]
+    assert result.quantity == product_data["quantity"]
+
 
 def test_new_product_duplicate():
-        existing_product = Product(
-            "Мопс",
-            "Красивый",
-            100,
-            2
-        )
-
-        existing_products = [existing_product]
-
-        product_data = {
-            "name": "Мопс",
-            "description": "Умный",
-            "price": 120,
-            "quantity": 3
-        }
-
-        result = Product.new_product(product_data, existing_products)
-
-        assert result is existing_product
-        assert isinstance(result, Product)
-        assert result.quantity == 5
-        assert result.price == 120
-
-
-def test_new_product_duplicate_old_price_higher():
-    existing_product = Product(
-        "Мопс",
-        "Красивый",
-        150,
-        2
-    )
+    existing_product = Product("Мопс", "Красивый", 100, 2)
 
     existing_products = [existing_product]
 
-    product_data = {
-        "name": "Мопс",
-        "description": "Умный",
-        "price": 100,
-        "quantity": 3
-    }
+    product_data = {"name": "Мопс", "description": "Умный", "price": 120, "quantity": 3}
+
+    result = Product.new_product(product_data, existing_products)
+
+    assert result is existing_product
+    assert isinstance(result, Product)
+    assert result.quantity == 5
+    assert result.price == 120
+
+
+def test_new_product_duplicate_old_price_higher():
+    existing_product = Product("Мопс", "Красивый", 150, 2)
+
+    existing_products = [existing_product]
+
+    product_data = {"name": "Мопс", "description": "Умный", "price": 100, "quantity": 3}
 
     result = Product.new_product(product_data, existing_products)
 
@@ -206,14 +188,10 @@ def test_iterator_iter():
 
 
 def test_iterator():
-    product1 = Product('Телефон', 'Описание', 1000, 4)
-    product2 = Product('Ноутбук','Описание',10000, 5)
+    product1 = Product("Телефон", "Описание", 1000, 4)
+    product2 = Product("Ноутбук", "Описание", 10000, 5)
 
-    category = Category(
-        'Электроника',
-        'Техника',
-        [product1, product2]
-    )
+    category = Category("Электроника", "Техника", [product1, product2])
 
     iterator = Iterator(category)
 
@@ -228,11 +206,7 @@ def test_iterator_for():
     product1 = Product("Телефон", "Описание", 1000, 2)
     product2 = Product("Ноутбук", "Описание", 2000, 3)
 
-    category = Category(
-        "Электроника",
-        "Техника",
-        [product1, product2]
-    )
+    category = Category("Электроника", "Техника", [product1, product2])
 
     iterator = Iterator(category)
 
@@ -245,10 +219,6 @@ def test_get_products_for_iterator():
     product1 = Product("Телефон", "Описание", 1000, 4)
     product2 = Product("Ноутбук", "Описание", 10000, 5)
 
-    category = Category(
-        "Электроника",
-        "Техника",
-        [product1, product2]
-    )
+    category = Category("Электроника", "Техника", [product1, product2])
 
     assert category.get_products_for_Iterator() == [product1, product2]

@@ -12,10 +12,8 @@ class Product:
         self.__price = price
         self.quantity = quantity
 
-
     def __str__(self):
-        return f'{self.name}, {self.price} руб. Остаток: {self.quantity} шт'
-
+        return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт"
 
     def __add__(self, other):
         return self.__price * self.quantity + other.price * other.quantity
@@ -67,17 +65,14 @@ class Category:
         Category.product_count += len(products)
         Category.category_count += 1
 
-
     def __str__(self):
         quantity_prod = 0
         for prod in self.__products:
             quantity_prod += prod.quantity
-        return f'{self.name}, количество продуктов: {quantity_prod} шт.'
-
+        return f"{self.name}, количество продуктов: {quantity_prod} шт."
 
     def get_products_for_Iterator(self):
         return self.__products
-
 
     @property
     def products(self):
@@ -97,12 +92,11 @@ class Iterator:
     def __init__(self, category):
         self.obj_Category = category
         self.data = self.obj_Category.get_products_for_Iterator()
-        self.current_index= 0
+        self.current_index = 0
 
     def __iter__(self):
         self.current_index = 0
         return self
-
 
     def __next__(self):
         if self.current_index < len(self.data):
